@@ -112,10 +112,10 @@ void CONTROL::returnHome(ros::Publisher& pub){
 
 		//speedX = -(longitude_gap * sin(theta + degreeToRadian(90))) + (latitude_gap * cos(theta + degreeToRadian(90)));
 		speedX = (longitude_gap * cos(theta)) + (latitude_gap * sin(theta));
-		speedY = (longitude_gap * sin(theta)) - (latitude_gap * cos(theta));
+		speedY = -(longitude_gap * sin(theta)) + (latitude_gap * cos(theta));
 
-		droneSpeed.linear.x = -speedX / dt;
-		droneSpeed.linear.y = -speedY / dt;
+		droneSpeed.linear.x = speedX / dt;
+		droneSpeed.linear.y = speedY / dt;
 		droneSpeed.linear.z = altitude_gap * dt;
 
 		droneSpeed.angular.x = droneSpeed.angular.y = 0;
@@ -165,19 +165,15 @@ b = arcsin(z / r)
 */
 
 void CONTROL::controlGPS(ros::Publisher& pub){
-	// distance fronm drone' position to destination
-	double distance = calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude);		// distance from current positon to goal position
-
+	ROS_INFO("control GPS");
 	double longitude_gap, latitude_gap, altitude_gap, yaw_gap = 1.;
 	double theta;
 	double speedX, speedY;
 
 	ros::Rate loopRate(100);
 
-	while(distance >= TOLERANCE || abs(radianToDegree(yaw_gap)) >= 5.){
+	while(calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude) >= TOLERANCE || abs(radianToDegree(yaw_gap)) >= 5.){	// distance fronm drone' position to destination
 		ros::spinOnce();	// subscribe all sub data
-
-		distance = calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude);
 
 		longitude_gap = homeGPSData.longitude - droneGPSData.longitude;
 		latitude_gap = homeGPSData.latitude - droneGPSData.latitude;
@@ -190,19 +186,19 @@ void CONTROL::controlGPS(ros::Publisher& pub){
 
 		//speedX = -(longitude_gap * sin(theta + degreeToRadian(90))) + (latitude_gap * cos(theta + degreeToRadian(90)));
 		speedX = (longitude_gap * cos(theta)) + (latitude_gap * sin(theta));
-		speedY = (longitude_gap * sin(theta)) - (latitude_gap * cos(theta));
+		speedY = -(longitude_gap * sin(theta)) + (latitude_gap * cos(theta));
 
 		if(speedX >= 0. && speedY >= 0.){
 				yaw_gap = atan2(speedY, speedX);
 				ROS_INFO("x >= 0, y >= 0");
 		}
 		else if(speedX < 0. && speedY >= 0.){
-				yaw_gap = (1.5 + atan2(speedX, speedY));
+				yaw_gap = -1.5 - atan2(speedX, speedY);
 				ROS_INFO("x < 0, y >= 0");
 		}
 		else if(speedX >= 0. && speedY < 0.){
 				yaw_gap = atan2(speedY, speedX);
-				ROS_INFO("x > 0, y < 0");
+				ROS_INFO("x >= 0, y < 0");
 		}
 		else{
 				yaw_gap = 1.5 + atan2(speedX, speedY);
@@ -216,7 +212,7 @@ void CONTROL::controlGPS(ros::Publisher& pub){
 		ROS_INFO("[DRONE] LATITUDE : %lf", droneGPSData.latitude);
 		ROS_INFO("[DRONE] ALTITUDE : %lf", droneGPSData.altitude);
 		ROS_INFO("[DRONE] YAW : %lf",droneRotationData.yaw);
-		ROS_INFO("[GAP] DISTANCE : %lf", distance);
+		ROS_INFO("[GAP] DISTANCE : %lf", calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude));
 		ROS_INFO("[GAP] XGAP : %lf", longitude_gap);
 		ROS_INFO("[GAP] YGAP : %lf", latitude_gap);
 		ROS_INFO("[GAP] ZGAP : %lf", altitude_gap);
@@ -224,16 +220,16 @@ void CONTROL::controlGPS(ros::Publisher& pub){
 		ROS_INFO("[GAP] YAWGAP : %lf", radianToDegree(yaw_gap));
 
 		// move to destination
-		droneSpeed.linear.x = -speedX / dt;
+		droneSpeed.linear.x = speedX / dt;
 		if (droneSpeed.linear.x > maxSpeedX) droneSpeed.linear.x = maxSpeedX;				// define the max speed of x
 		else if (droneSpeed.linear.x < -maxSpeedX) droneSpeed.linear.x = -maxSpeedX;
-		droneSpeed.linear.y = -speedY / dt;
+		droneSpeed.linear.y = speedY / dt;
 		if (droneSpeed.linear.y > maxSpeedY) droneSpeed.linear.y = maxSpeedY;				// define the max speed of y
 		else if (droneSpeed.linear.y < -maxSpeedY) droneSpeed.linear.y = -maxSpeedY;
 		droneSpeed.linear.z = altitude_gap * dt;
 		if (droneSpeed.linear.z > maxSpeedZ) droneSpeed.linear.z = maxSpeedZ;				// define the max speed of z
 		else if (droneSpeed.linear.z < -maxSpeedZ) droneSpeed.linear.z = -maxSpeedZ;
-		droneSpeed.angular.z = radianToDegree(yaw_gap) * dt;
+		droneSpeed.angular.z = yaw_gap;
 		if (droneSpeed.angular.z > maxSpeedYaw) droneSpeed.angular.z = maxSpeedYaw;	// define the max speed of yaw
 		else if (droneSpeed.angular.z < -maxSpeedYaw) droneSpeed.angular.z = -maxSpeedYaw;
 
@@ -250,40 +246,69 @@ void CONTROL::controlGPS(ros::Publisher& pub){
 }
 
 void CONTROL::controlGPS_yawAndMove(ros::Publisher& pub){
-	double distance = calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude);		// distance from current positon to goal position
-
-	double longitude_gap, latitude_gap, altitude_gap, yaw_gap = 1;
+	ROS_INFO("control GPS_yaw first");
+	double longitude_gap, latitude_gap, altitude_gap, yaw_gap = 1.;
+	double theta;
 	double speedX, speedY;
 
 	ros::Rate loopRate(100);
 
-	while(distance >= TOLERANCE){
+	while(calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude) >= TOLERANCE){
 		ros::spinOnce();	// subscribe all sub data
-
-		distance = calDistance(droneGPSData.latitude, droneGPSData.longitude, homeGPSData.latitude, homeGPSData.longitude);
 
 		longitude_gap = homeGPSData.longitude - droneGPSData.longitude;
 		latitude_gap = homeGPSData.latitude - droneGPSData.latitude;
 		altitude_gap = homeGPSData.altitude - droneGPSData.altitude;
 
-		while(1){
+		if(droneRotationData.yaw >= -1.5 && droneRotationData.yaw <= 3.)
+			theta = 1.5 - droneRotationData.yaw;	// radian between x axis and drone' x vector
+		else
+			theta = -4.5 - droneRotationData.yaw;
+
+		speedX = (longitude_gap * cos(theta)) + (latitude_gap * sin(theta));
+		speedY = -(longitude_gap * sin(theta)) + (latitude_gap * cos(theta));
+
+		while(abs(radianToDegree(yaw_gap)) >= 0.5){
+			ros::spinOnce();
 			if(speedX >= 0. && speedY >= 0.){
-					yaw_gap = -atan2(speedY, speedX);
+					yaw_gap = atan2(speedY, speedX);
 					ROS_INFO("x >= 0, y >= 0");
 			}
 			else if(speedX < 0. && speedY >= 0.){
-					yaw_gap = -(1.5 + atan2(speedX, speedY));
+					yaw_gap = -1.5 - atan2(speedX, speedY);
 					ROS_INFO("x < 0, y >= 0");
 			}
 			else if(speedX >= 0. && speedY < 0.){
 					yaw_gap = atan2(speedY, speedX);
-					ROS_INFO("x > 0, y < 0");
+					ROS_INFO("x >= 0, y < 0");
 			}
 			else{
 					yaw_gap = 1.5 + atan2(speedX, speedY);
 					ROS_INFO("x < 0, y < 0");
 			}
+
+			droneSpeed.linear.x = droneSpeed.linear.y = droneSpeed.linear.z = 0;
+			droneSpeed.angular.x = droneSpeed.angular.y = 0;
+			droneSpeed.angular.z = radianToDegree(yaw_gap);
+
+			ROS_INFO("[GAP] YAW_GAP : %lf", yaw_gap);
+			ROS_INFO("[DRONE] YAW : %lf", droneRotationData.yaw);
+			ROS_INFO("[SPEED] YAW : %lf", droneSpeed.angular.z);
+
+			pub.publish(droneSpeed);
+			loopRate.sleep();
 		}
+
+		// move to destination
+		droneSpeed.linear.x = speedX / dt;
+		if (droneSpeed.linear.x > maxSpeedX) droneSpeed.linear.x = maxSpeedX;				// define the max speed of x
+		else if (droneSpeed.linear.x < -maxSpeedX) droneSpeed.linear.x = -maxSpeedX;
+		droneSpeed.linear.y = speedY / dt;
+		if (droneSpeed.linear.y > maxSpeedY) droneSpeed.linear.y = maxSpeedY;				// define the max speed of y
+		else if (droneSpeed.linear.y < -maxSpeedY) droneSpeed.linear.y = -maxSpeedY;
+		droneSpeed.linear.z = altitude_gap * dt;
+		if (droneSpeed.linear.z > maxSpeedZ) droneSpeed.linear.z = maxSpeedZ;				// define the max speed of z
+		else if (droneSpeed.linear.z < -maxSpeedZ) droneSpeed.linear.z = -maxSpeedZ;
 	}
 }
 
