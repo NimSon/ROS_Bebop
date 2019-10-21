@@ -23,7 +23,7 @@ private:
   sensor_msgs::NavSatFix homeGPSData;                                   // subscribe home GPS data
   bebop_msgs::Ardrone3PilotingStatePositionChanged droneGPSData, prev_droneGPSData;        // subscribe GPS data of the drone
   bebop_msgs::Ardrone3PilotingStateAttitudeChanged droneRotationData, prev_droneRotationData;   // subscribe 'roll', 'pitch', 'yaw' data of the drone
-
+  
 public:
   ros::Publisher pub_[4];   // publish 'takeoff', 'land', 'emergency', 'move' commands
   geometry_msgs::Twist droneSpeed, prev_droneSpeed;

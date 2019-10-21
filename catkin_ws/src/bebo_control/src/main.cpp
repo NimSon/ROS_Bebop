@@ -10,7 +10,7 @@ int main(int argc, char **argv){
 	bebop_control->readyToPublish(nh);
   bebop_control->subscribers(nh);
 
-	  ros::Rate loopRate(50);
+	ros::Rate loopRate(50);
 
 	ros::Timer inputKey = nh.createTimer(ros::Duration(0.01), controlKeyboard);
 
@@ -21,4 +21,3 @@ int main(int argc, char **argv){
 
 	return 0;
 }
-
