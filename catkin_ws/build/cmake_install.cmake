@@ -130,7 +130,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/nim/catkin_ws/build/bebop_msgs/cmake_install.cmake")
   include("/home/nim/catkin_ws/build/bebop_tools/cmake_install.cmake")
   include("/home/nim/catkin_ws/build/bebop_description/cmake_install.cmake")
-  include("/home/nim/catkin_ws/build/bebo_control/cmake_install.cmake")
+  include("/home/nim/catkin_ws/build/bebop_control/cmake_install.cmake")
   include("/home/nim/catkin_ws/build/bebop_driver/cmake_install.cmake")
 
 endif()

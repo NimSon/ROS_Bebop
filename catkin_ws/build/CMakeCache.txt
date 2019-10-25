@@ -284,10 +284,10 @@ bebop_autonomy_BINARY_DIR:STATIC=/home/nim/catkin_ws/build/bebop_autonomy
 bebop_autonomy_SOURCE_DIR:STATIC=/home/nim/catkin_ws/src/bebop_autonomy
 
 //Value Computed by CMake
-bebop_control_BINARY_DIR:STATIC=/home/nim/catkin_ws/build/bebo_control
+bebop_control_BINARY_DIR:STATIC=/home/nim/catkin_ws/build/bebop_control
 
 //Value Computed by CMake
-bebop_control_SOURCE_DIR:STATIC=/home/nim/catkin_ws/src/bebo_control
+bebop_control_SOURCE_DIR:STATIC=/home/nim/catkin_ws/src/bebop_control
 
 //Value Computed by CMake
 bebop_description_BINARY_DIR:STATIC=/home/nim/catkin_ws/build/bebop_description
