@@ -1,7 +1,7 @@
 #ifndef PRINT_H
 #define PRINT_H
 
-#include "test.h"
+#include "control.h"
 
 void printSpeed(double speedX, double speedY, double speedZ, double speedYaw){
   ROS_INFO("[SPEED] X : %lf", speedX);
@@ -20,6 +20,12 @@ void printDroneGPS(double gpsX, double gpsY, double gpsZ){
   ROS_INFO("[DRONE] LONGITUDE : %lf", gpsX);  // x
   ROS_INFO("[DRONE] LATITUDE : %lf", gpsY);  // y
   ROS_INFO("[DRONE] ALTITUDE : %lf", gpsZ);  // z
+}
+
+void printDestinationGPS(double gpsX, double gpsY, double gpsZ){
+  ROS_INFO("[DESTINATION] LONGITUDE : %lf", gpsX);  // x
+  ROS_INFO("[DESTINATION] LATITUDE : %lf", gpsY);  // y
+  ROS_INFO("[DESTINATION] ALTITUDE : %lf", gpsZ);  // z
 }
 
 void printRotation(double roll, double pitch, double yaw){

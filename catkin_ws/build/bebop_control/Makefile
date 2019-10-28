@@ -301,21 +301,6 @@ geometry_msgs_generate_messages_eus/fast:
 .PHONY : geometry_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-bebop_control/CMakeFiles/bebop_test.dir/rule:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bebop_control/CMakeFiles/bebop_test.dir/rule
-.PHONY : bebop_control/CMakeFiles/bebop_test.dir/rule
-
-# Convenience name for target.
-bebop_test: bebop_control/CMakeFiles/bebop_test.dir/rule
-
-.PHONY : bebop_test
-
-# fast build rule for target.
-bebop_test/fast:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/build
-.PHONY : bebop_test/fast
-
-# Convenience name for target.
 bebop_control/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
 	cd /home/nim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bebop_control/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
 .PHONY : bebop_control/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
@@ -344,21 +329,6 @@ rosgraph_msgs_generate_messages_nodejs: bebop_control/CMakeFiles/rosgraph_msgs_g
 rosgraph_msgs_generate_messages_nodejs/fast:
 	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make bebop_control/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 bebop_control/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
@@ -480,13 +450,70 @@ sensor_msgs_generate_messages_lisp/fast:
 	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make bebop_control/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
+# Convenience name for target.
+bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make bebop_control/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+bebop_control/CMakeFiles/bebop_control.dir/rule:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 bebop_control/CMakeFiles/bebop_control.dir/rule
+.PHONY : bebop_control/CMakeFiles/bebop_control.dir/rule
+
+# Convenience name for target.
+bebop_control: bebop_control/CMakeFiles/bebop_control.dir/rule
+
+.PHONY : bebop_control
+
+# fast build rule for target.
+bebop_control/fast:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/build
+.PHONY : bebop_control/fast
+
+src/control.o: src/control.cpp.o
+
+.PHONY : src/control.o
+
+# target to build an object file
+src/control.cpp.o:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/control.cpp.o
+.PHONY : src/control.cpp.o
+
+src/control.i: src/control.cpp.i
+
+.PHONY : src/control.i
+
+# target to preprocess a source file
+src/control.cpp.i:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/control.cpp.i
+.PHONY : src/control.cpp.i
+
+src/control.s: src/control.cpp.s
+
+.PHONY : src/control.s
+
+# target to generate assembly for a file
+src/control.cpp.s:
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/control.cpp.s
+.PHONY : src/control.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/main.cpp.o
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -495,7 +522,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/main.cpp.i
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -504,35 +531,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/main.cpp.s
+	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_control.dir/build.make bebop_control/CMakeFiles/bebop_control.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/test.o: src/test.cpp.o
-
-.PHONY : src/test.o
-
-# target to build an object file
-src/test.cpp.o:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/test.cpp.o
-.PHONY : src/test.cpp.o
-
-src/test.i: src/test.cpp.i
-
-.PHONY : src/test.i
-
-# target to preprocess a source file
-src/test.cpp.i:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/test.cpp.i
-.PHONY : src/test.cpp.i
-
-src/test.s: src/test.cpp.s
-
-.PHONY : src/test.s
-
-# target to generate assembly for a file
-src/test.cpp.s:
-	cd /home/nim/catkin_ws/build && $(MAKE) -f bebop_control/CMakeFiles/bebop_test.dir/build.make bebop_control/CMakeFiles/bebop_test.dir/src/test.cpp.s
-.PHONY : src/test.cpp.s
 
 # Help Target
 help:
@@ -554,10 +554,8 @@ help:
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... bebop_test"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
@@ -567,13 +565,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... bebop_control"
 	@echo "... install/strip"
+	@echo "... src/control.o"
+	@echo "... src/control.i"
+	@echo "... src/control.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/test.o"
-	@echo "... src/test.i"
-	@echo "... src/test.s"
 .PHONY : help
 
 
