@@ -1,0 +1,8 @@
+prefix=/home/nim/catkin_ws/install
+
+Name: bebop_gui
+Description: Description of bebop_gui
+Version: 0.1.0
+Cflags: -I/home/nim/catkin_ws/install/include
+Libs: -L/home/nim/catkin_ws/install/lib -lbebop_control
+Requires: bebop_msgs geometry_msgs roscpp std_msgs

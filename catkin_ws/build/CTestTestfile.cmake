@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(bebop_msgs)
+subdirs(bebop_gui)
 subdirs(bebop_description)
 subdirs(bebop_control)
 subdirs(bebop_driver)

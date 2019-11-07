@@ -1,2 +1,2 @@
-bebop_control:bebop_description:bebop_driver:bebop_msgs
+bebop_control:bebop_description:bebop_driver:bebop_gui:bebop_msgs
 -DCATKIN_DEVEL_PREFIX=/home/nim/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/nim/catkin_ws/install -G Unix Makefiles

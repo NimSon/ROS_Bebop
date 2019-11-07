@@ -132,7 +132,7 @@ bebop_EXTERNAL_OBJECTS =
 /home/nim/catkin_ws/devel/lib/libbebop.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 /home/nim/catkin_ws/devel/lib/libbebop.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/liborocos-kdl.so
-/home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+/home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 /home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/libtf2_ros.so
 /home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/libactionlib.so
 /home/nim/catkin_ws/devel/lib/libbebop.so: /opt/ros/kinetic/lib/libmessage_filters.so
